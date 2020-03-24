@@ -1,0 +1,8 @@
+{
+  "/ncol/*":
+  {
+    "target": "https://e-payment.postfinance.ch",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

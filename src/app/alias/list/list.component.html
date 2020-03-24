@@ -1,0 +1,20 @@
+<form *ngIf="auth.isLoggedIn()">
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Please select an alias to use</label>
+    <div class="row">
+      <div class="col col-12">
+        <select class="form-control" id="exampleFormControlSelect1" style="cursor: pointer;" (change)="selectedAlias = $event.target.value">
+          <option
+            *ngFor="let alias of aliases | async"
+            [value]="alias.alias"
+            name="alias">{{alias.card}} {{alias.brand}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="!selectedAlias">
+    {{ errorMsg }}
+  </div>
+  <button class="btn btn-primary w-100" (click)="payment()" [disabled]="!selectedAlias">Pay</button>
+</form>

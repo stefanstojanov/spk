@@ -1,0 +1,40 @@
+<div class="row d-flex justify-content-center p-3">
+  <div class="col-sm-12 col-md-3 col-lg-4">
+    <h3>Sign Up</h3>
+    <form>
+      <ng-container *ngIf="!authenticationService.isLoggedIn() else loggedIn">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Username" #userEmail required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Password" #userPassword required>
+        </div>
+        <div class="alert alert-danger" role="alert">
+          You need to sign up/sign in to create an Alias!
+        </div>
+          <div class="row justify-content-center">
+            <input *ngIf="!authenticationService.isLoggedIn()" type="button" class="btn btn-primary col-3 m-1" value="Sign Up" (click)="authenticationService.SignUp(userEmail.value, userPassword.value)">
+            <input type="button" class="btn btn-primary col-3 m-1" value="Sign In" (click)="authenticationService.SignIn(userEmail.value, userPassword.value)">
+          </div>
+      </ng-container>
+      <ng-template #loggedIn>
+        <div class="row justify-content-center">
+          <input type="button" class="btn btn-primary m-1" value="Log Out" (click)="authenticationService.logout()">
+        </div>
+      </ng-template>
+      <div class="form-group pt-1">
+        <input type="text" name="CN" class="form-control" placeholder="Full Name" [(ngModel)]="name" required>
+      </div>
+      <div class="form-group">
+        <select class="form-control" id="language" name="Language" [(ngModel)]="selectedLanguage">
+          <option value="en_US">English</option>
+          <option value="de_CH">German</option>
+          <option value="fr_FR">French</option>
+        </select>
+      </div>
+      <input type="button" class="btn btn-primary" value="Create alias" (click)="createAlias()" [disabled]="!authenticationService.isLoggedIn()">
+
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,55 @@
+<div class="row d-flex justify-content-center">
+  <div class="col-sm-12 col-md-3 col-lg-4" *ngIf="!authenticationService.isLoggedIn()">
+    <p>Login</p>
+    <form>
+      <ng-container>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Username" #userEmail required>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Password" #userPassword required>
+        </div>
+        <div class="row justify-content-center">
+          <input *ngIf="!authenticationService.isLoggedIn()" type="button" class="btn btn-primary m-1" value="Sign Up" (click)="authenticationService.SignUp(userEmail.value, userPassword.value)">
+          <input type="button" class="btn btn-primary m-1" value="Sign In" (click)="authenticationService.SignIn(userEmail.value, userPassword.value)">
+        </div>
+      </ng-container>
+    </form>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-6" *ngIf="loaded">
+    <div class="justify-content-center">
+      <p class="">
+        Order details:
+      </p>
+    </div>
+    <table class="table table-bordered">
+      <tbody>
+      <tr>
+        <th>ID</th>
+        <td>{{ orderObj.orderID}}</td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td>{{ orderObj.description}}</td>
+      </tr>
+      <tr>
+        <th>Amount</th>
+        <td>{{ orderObj.amount}}</td>
+      </tr>
+      <tr>
+        <th>Currency</th>
+        <td>{{ orderObj.currency}}</td>
+      </tr>
+      <tr>
+        <th>Status</th>
+        <td>{{ orderObj.status}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <ng-container *ngIf="authenticationService.isLoggedIn()">
+      <div class="row p-3">
+        <input type="button" class="btn btn-primary w-100" value="Log Out" (click)="authenticationService.logout()">
+      </div>
+    </ng-container>
+  </div>
+</div>

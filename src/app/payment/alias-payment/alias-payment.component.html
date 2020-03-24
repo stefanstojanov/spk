@@ -1,0 +1,17 @@
+<div class="row d-flex justify-content-center p-3">
+  <div class="col-sm-12 col-md-8 col-lg-8">
+    <app-login></app-login>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-4">
+    <div class="form-group">
+      <label for="language">Please select language</label>
+      <select class="form-control" id="language" name="Language" [(ngModel)]="selectedLanguage">
+        <option value="en_US">English</option>
+        <option value="de_CH">German</option>
+        <option value="fr_FR">French</option>
+      </select>
+    </div>
+    <app-list [orderObj]="orderObj" [aliases]="aliases" [selectedLanguage]="selectedLanguage"></app-list>
+  </div>
+
+</div>
